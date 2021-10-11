@@ -1,0 +1,187 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    
+<title>practicale</title>
+
+</head>
+<body>
+<form>
+    <label for="fname">id :</label>
+    <input type="text" id="id1" name="name" placeholder="Enter Id..">
+
+    <label for="lname">id1 :</label>
+    <input type="text" id="id2" name="firstname" placeholder="Enter Id....">
+
+	<label for="lname">id2 :</label>
+    <input type="text" id="id3" name="lastname" placeholder="Enter Id....">
+
+    <input type="button" id="submit" value="Submit">
+  </form>
+</body>
+<script>
+    const submitBtn = document.querySelector('#submit');
+
+    foodItems = [
+        {
+        id:1,
+        name: 'Breakfast 1',
+        price: 30,
+        foodType:0,
+        available:1
+        },
+        {
+        id:2,
+        name: 'Breakfast 2',
+        price: 50,
+        foodType:0,
+        available:1
+        },
+        {
+        id:3,
+        name: 'Breakfast 3',
+        price: 40,
+        foodType:0,
+        available:0
+        },
+        {
+        id:4,
+        name: 'Lunch 1',
+        price: 60,
+        foodType:1,
+        available:0
+        },
+        {
+        id:5,
+        name: 'Lunch 2',
+        price: 40,
+        foodType:1,
+        available:1
+        },
+        {
+        id:7,
+        name: 'Dinner 1',
+        price: 200,
+        foodType:2,
+        available:0
+        },
+        {
+        id:6,
+        name: 'Lunch 3',
+        price: 20,
+        foodType:1,
+        available:1
+        },
+        {
+        id:8,
+        name: 'Dinner 2',
+        price: 50,
+        foodType:2,
+        available:1
+        },
+        {
+        id:9,
+        name: 'Dinner 3',
+        price: 60,
+        foodType:2,
+        available:1
+        },
+    ]
+
+console.log('------------------ 1 Ans -----------------------');
+const breakFastItem = foodItems.filter(items => {
+    return items.foodType == 0; 
+});
+const lunchItem = foodItems.filter(items => {
+    return items.foodType == 1;
+});
+const dinnerItem = foodItems.filter(items => {
+    return items.foodType == 2;
+});
+
+console.log(breakFastItem);
+console.log(lunchItem);
+console.log(dinnerItem);
+
+// const finalOP = function (typeOfFood) {
+//     if(foodItems.foodtype == 0){
+//         console.log(hii);
+//     }
+// }
+
+// console.log(finalOP(foodItems.foodType))
+
+console.log('------------------ 2 Ans -----------------------');
+const availableItem = foodItems.filter(items => {
+    // breakfastItem.foodType = items.foodType;
+    return items.available == 1;
+});
+
+console.log(availableItem);
+
+console.log('------------------ 3 Ans -----------------------');
+const compareBreakFastItem = breakFastItem
+    .filter(item => item.price >= 50)
+        
+const compareLunchItem = lunchItem
+    .filter(item => item.price >= 50)
+
+const compareDinnerItem = dinnerItem
+    .filter(item => item.price >= 50)
+
+console.log(compareBreakFastItem);
+console.log(compareLunchItem);
+console.log(compareDinnerItem);
+
+console.log('------------------ 4 Ans -----------------------');
+
+const allIdCompare = function(textBox){
+    const obj = foodItems.find(item => item.id == textBox);
+  
+    if(obj.available == 1){
+        return obj.price;
+    }
+    else if(obj.available == 0){
+        return obj;
+    }
+    else{
+        return 0;
+    }
+
+}
+submitBtn.addEventListener("click",function(){
+
+    let textPrice = 0;
+    let black = [];
+    const textBoxId1 = document.getElementById('id1').value;
+    const textBoxId2 = document.getElementById('id2').value;
+    const textBoxId3 = document.getElementById('id3').value;
+ 
+    const textPrice1 = allIdCompare(textBoxId1);
+    const textPrice2 = allIdCompare(textBoxId2);
+    const textPrice3 = allIdCompare(textBoxId3);
+    
+    if(typeof(textPrice1) == 'number'){
+        textPrice += textPrice1;
+        //console.log(textPrice);   
+    }
+    else{
+        black.push(textPrice1.id);
+    }
+    if(typeof(textPrice2) == 'number'){
+        textPrice += textPrice2
+    }
+    else{
+        black.push(textPrice2.id);
+    }
+    if(typeof(textPrice3) == 'number'){
+        textPrice += textPrice3 
+    }
+    else{
+        black.push(textPrice3.id);
+    }
+    console.log(textPrice);
+    console.log(black.toString());
+    
+});
+</script>
+</html>
